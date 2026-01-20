@@ -1,8 +1,10 @@
 package com.imgt.core.domain.user;
 
+import com.imgt.core.domain.address.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,4 +22,10 @@ public class User {
 
     @Column
     private String nome;
+
+    @Column
+    private String phoneNumber;
+
+    @OneToMany
+    private List<Address> address;
 }
