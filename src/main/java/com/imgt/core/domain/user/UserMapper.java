@@ -3,15 +3,21 @@ package com.imgt.core.domain.user;
 import com.imgt.core.domain.address.AddressMapper;
 import lombok.experimental.UtilityClass;
 
+import java.util.UUID;
+
 @UtilityClass
 public class UserMapper {
 
     public User DtoToEntity(UserDto userDto){
+        if(userDto.getUuid() == null){
+            userDto.setUuid(UUID.randomUUID());
+        }
+
         return User.builder()
                 .uuid(userDto.getUuid())
                 .nome(userDto.getNome())
                 .phoneNumber(userDto.getPhoneNumber())
-                .address(userDto.getAddressDtoList() != null ? userDto.getAddressDtoList().stream()
+                .address(userDto.getAddressDto() != null ? userDto.getAddressDto().stream()
                         .map(AddressMapper::toEntity)
                         .toList() : null)
                 .build();
@@ -22,7 +28,7 @@ public class UserMapper {
                 .uuid(user.getUuid())
                 .nome(user.getNome())
                 .phoneNumber(user.getPhoneNumber())
-                .addressDtoList(user.getAddress() != null ? user.getAddress().stream()
+                .addressDto(user.getAddress() != null ? user.getAddress().stream()
                         .map(AddressMapper::toDTO)
                         .toList() : null)
                 .build();

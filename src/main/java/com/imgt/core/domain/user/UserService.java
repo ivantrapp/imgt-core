@@ -3,6 +3,7 @@ package com.imgt.core.domain.user;
 import com.imgt.core.domain.address.AddressDto;
 import com.imgt.core.domain.address.AddressMapper;
 import com.imgt.core.domain.address.AddressService;
+import com.imgt.core.event.EventStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +14,14 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final AddressService addressService;
+    private final EventStoreRepository eventStoreRepository;
 
     @Autowired
     public UserService(UserRepository userRepository,
-                       AddressService addressService) {
+                       AddressService addressService, EventStoreRepository eventStoreRepository) {
         this.userRepository = userRepository;
         this.addressService = addressService;
+        this.eventStoreRepository = eventStoreRepository;
     }
 
     public UserDto createUser(UserDto userDto){

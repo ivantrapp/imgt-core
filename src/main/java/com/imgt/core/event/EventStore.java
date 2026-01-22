@@ -3,12 +3,9 @@ package com.imgt.core.event;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
 import org.hibernate.type.SqlTypes;
-import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -25,9 +22,13 @@ public class EventStore {
 
     private OffsetDateTime createdAt;
 
-    private String eventType;
+    private UUID streamId;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
-    private List<Event> data;
+    private String data;
+
+    private EventType eventType;
+
+    private Long version;
 }

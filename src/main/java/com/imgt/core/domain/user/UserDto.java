@@ -18,5 +18,5 @@ public class UserDto {
     private UUID uuid;
     private String nome;
     private String phoneNumber;
-    private List<AddressDto> addressDtoList;
+    private List<AddressDto> addressDto;
 }
