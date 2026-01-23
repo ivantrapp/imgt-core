@@ -8,7 +8,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
   data:
     redis:
@@ -24,7 +24,7 @@ spring:
       region:
         static: us-east-2
     credentials:
-      acess-key: ${AWS_ACCESS_KEY_ID}
+      access-key: ${AWS_ACCESS_KEY_ID}
       secret-key: ${AWS_SECRET_ACCESS_KEY}
     sqs:
       enabled: true
@@ -32,7 +32,13 @@ spring:
       listener:
         max-concurrent-messages: 1  # FIFO processa em ordem, geralmente 1 por vez
         max-messages-per-poll: 10
+    sns:
+      enabled: true
 
+aws:
+  sns:
+    topic:
+      arn-fifo: arn:aws:sns:us-east-2:266933065489:imgt-sns.fifo
 logging:
   level:
     org.hibernate.SQL: DEBUG

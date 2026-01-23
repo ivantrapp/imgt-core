@@ -1,0 +1,29 @@
+package com.imgt.core.query.user;
+
+import com.imgt.core.query.address.AddressViewModel;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
+import java.util.UUID;
+
+@Entity
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserViewModel {
+
+    @Id
+    private UUID uuid;
+
+    @Column
+    private String nome;
+
+    @Column
+    private String phoneNumber;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<AddressViewModel> address;
+}
