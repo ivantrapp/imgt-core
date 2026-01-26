@@ -51,6 +51,7 @@ public class UserCommandHandler {
     }
 
     public UserDto handleUpdateUserCommand(UserDto data) throws JsonProcessingException {
+        // TODO procurar snapshot mais recente
         List<EventStore> events = eventStoreService.findByStreamIdOrderByVersionAsc(data.getUuid());
         UserDto currentUser = userAggregate.rehydrateUserEvents(events, data.getUuid());
 

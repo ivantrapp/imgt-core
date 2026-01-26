@@ -16,6 +16,8 @@ import java.util.UUID;
 public class UserViewModel {
 
     @Id
+    private Long id;
+
     private UUID uuid;
 
     @Column
@@ -26,4 +28,5 @@ public class UserViewModel {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<AddressViewModel> address;
+
 }
